@@ -22,6 +22,12 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
       
+    - name: Analyze code
+      run: flutter analyze
+      
+    - name: Run tests
+      run: flutter test
+      
     - name: Build iOS (no codesign)
       run: flutter build ios --release --no-codesign
       
@@ -36,7 +42,7 @@ jobs:
         zip -r ../ipa/ExpressWidget-unsigned.ipa Payload/
         
     - name: Upload IPA artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ios-ipa-unsigned
         path: build/ios/ipa/ExpressWidget-unsigned.ipa
